@@ -2,7 +2,8 @@ package org.example;
 
 import org.example.Model.Movie;
 import org.example.Repository.MovieRepository;
-
+import org.example.Service.MovieService;
+import org.example.Controller.MovieController;
 
 import java.util.List;
 
@@ -11,6 +12,8 @@ public class App
     public static void main( String[] args )
     {
         MovieRepository repo = new MovieRepository();
+        MovieService service = new MovieService(repo);
+        MovieController controller = new MovieController(service);
 
         // 1. Add Movie
         Movie newMovie = new Movie(
