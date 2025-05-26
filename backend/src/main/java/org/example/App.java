@@ -13,7 +13,6 @@ public class App
     {
         MovieRepository repo = new MovieRepository();
         MovieService service = new MovieService(repo);
-        MovieController controller = new MovieController(service);
 
         // 1. Add Movie
         Movie newMovie = new Movie(
