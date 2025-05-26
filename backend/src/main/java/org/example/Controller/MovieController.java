@@ -2,45 +2,47 @@ package org.example.Controller;
 
 import org.example.Model.Movie;
 import org.example.Service.MovieService;
-
-import java.util.List;
+import static spark.Spark.*;
+import com.google.gson.Gson;
 
 public class MovieController {
-    private final MovieService service;
+    private static final Gson gson = new Gson();
 
-    public MovieController(MovieService service) {
-        this.service = service;
-    }
+    public static void initRoutes(MovieService service) {
 
-    public boolean addMovie(Movie movie) {
-        return service.addMovie(movie);
-    }
+        get("/movie", (req, res) -> {
+            String search = req.queryParams("search");
+            res.type("application/json");
+            if (search != null && !search.isEmpty()) {
+                return gson.toJson(
+                        service.getAllMovies().stream()
+                                .filter(m -> m.getTitle().toLowerCase().contains(search.toLowerCase()))
+                                .toList()
+                );
+            } else {
+                return gson.toJson(service.getAllMovies());
+            }
+        });
 
-    public boolean deleteMovie(String title) {
-        return service.deleteMovie(title);
-    }
+        post("/movie", (req, res) -> {
+            Movie movie = gson.fromJson(req.body(), Movie.class);
+            boolean success = service.addMovie(movie);
+            res.status(success ? 201 : 400);
+            return success ? "Created" : "Movie already exists or invalid data";
+        });
 
-    public boolean markAsWatched(String title) {
-        return service.markAsWatched(title);
-    }
+        put("/movie/:title", (req, res) -> {
+            String title = req.params(":title");
+            boolean success = service.markAsWatched(title);
+            res.status(success ? 200 : 404);
+            return success ? "Marked as watched" : "Movie not found";
+        });
 
-    public List<Movie> getAllMovies() {
-        return service.getAllMovies();
-    }
-
-    public List<Movie> getWatchedMovies() {
-        return service.getWatchedMovies();
-    }
-
-    public List<Movie> getMoviesByYear(int year) {
-        return service.getMoviesByYear(year);
-    }
-
-    public List<Movie> getMoviesByType(String type) {
-        return service.getMoviesByType(type);
-    }
-
-    public List<Movie> getMoviesByPlatform(String platform) {
-        return service.getMoviesByPlatform(platform);
+        delete("/movie/:title", (req, res) -> {
+            String title = req.params(":title");
+            boolean success = service.deleteMovie(title);
+            res.status(success ? 200 : 404);
+            return success ? "Deleted" : "Movie not found";
+        });
     }
 }
