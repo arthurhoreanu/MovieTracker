@@ -1,18 +1,21 @@
 import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
 import AddMovieButton from "@/components/AddMovieButton";
+import { useRouter } from "next/router";
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+    variable: "--font-geist-sans",
+    subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+    variable: "--font-geist-mono",
+    subsets: ["latin"],
 });
 
 export default function Home() {
+    const router = useRouter();
+
     return (
         <main className="min-h-screen flex flex-col items-center px-4 py-8 bg-background text-foreground">
             <header className="mb-10 text-center">
@@ -22,10 +25,18 @@ export default function Home() {
                 <p className="text-md text-gray-400 mt-2 max-w-xl mx-auto">
                     From Classics to New Releases — Sorted, Filtered, Found.
                 </p>
+
+                {/* 🎬 Movie Catalog Button */}
+                <button
+                    onClick={() => router.push("/catalog")}
+                    className="mt-6 px-6 py-3 bg-neutral-800 text-white rounded-xl shadow hover:bg-neutral-700 transition"
+                >
+                    🎬 Movie Catalog
+                </button>
             </header>
 
             <section className="w-full max-w-4xl space-y-6">
-                {/* TODO: AddMovieForm */}
+                {/* AddMovieForm Section */}
                 <div className="bg-[#121212] p-4 rounded-2xl shadow-md border border-neutral-800">
                     <h2 className="text-xl font-semibold mb-2">Add a Movie</h2>
                     <AddMovieButton />
