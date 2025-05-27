@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import AddMovieButton from "@/components/AddMovieButton";
 //import Navbar from "@/components/Navbar";
 import { useRouter } from "next/router";
+import MoviePosterMarquee from "@/components/MoviePosterMarquee";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -20,7 +21,7 @@ export default function Home() {
         <>
 
             <main className="min-h-screen flex flex-col items-center px-4 py-8 bg-background text-foreground">
-                <header className="mb-10 text-center">
+                <header className="mb-10 text-center w-full">
                     <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
                         The Movie Tracker
                     </h1>
@@ -28,28 +29,30 @@ export default function Home() {
                         From Classics to New Releases — Sorted, Filtered, Found.
                     </p>
 
+                    <MoviePosterMarquee />
+
                     <button
                         onClick={() => router.push("/catalog")}
                         className="mt-6 px-6 py-3 bg-neutral-800 text-white rounded-xl shadow hover:bg-neutral-700 transition"
                     >
-                        🎬 Movie Catalog
+                        🎬 See the entire movie catalog
                     </button>
                 </header>
 
-                <section className="w-full max-w-4xl space-y-6">
-                    <div className="bg-[#121212] p-4 rounded-2xl shadow-md border border-neutral-800">
-                        <h2 className="text-xl font-semibold mb-2">Add a Movie</h2>
-                        <AddMovieButton />
-                    </div>
+                {/*<section className="w-full max-w-4xl space-y-6">*/}
+                {/*    <div className="bg-[#121212] p-4 rounded-2xl shadow-md border border-neutral-800">*/}
+                {/*        <h2 className="text-xl font-semibold mb-2">Add a Movie</h2>*/}
+                {/*        <AddMovieButton />*/}
+                {/*    </div>*/}
 
-                    <div className="flex flex-wrap gap-4 items-center justify-between">
-                        {/* <FilterControls /> */}
-                    </div>
+                {/*    <div className="flex flex-wrap gap-4 items-center justify-between">*/}
+                {/*        /!* <FilterControls /> *!/*/}
+                {/*    </div>*/}
 
-                    <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6">
-                        {/* <MovieCard /> */}
-                    </div>
-                </section>
+                {/*    <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6">*/}
+                {/*        /!* <MovieCard /> *!/*/}
+                {/*    </div>*/}
+                {/*</section>*/}
             </main>
         </>
     );
