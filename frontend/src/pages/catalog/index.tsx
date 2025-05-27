@@ -8,7 +8,6 @@ export default function MovieCatalog() {
 
     const router = useRouter();
 
-    // 🔍 Preluăm și validăm query-ul
     const rawQuery = router.query.search;
     const searchQuery =
         typeof rawQuery === 'string' && rawQuery.trim().length > 0
