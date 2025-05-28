@@ -16,7 +16,7 @@ public class App {
                 2014,
                 "Sci-Fi",
                 "Netflix",
-                false,
+                true,
                 "https://m.media-amazon.com/images/I/91kFYg4fX3L._AC_SL1500_.jpg"
         ));
 
@@ -25,7 +25,7 @@ public class App {
                 2014,
                 "Comedy",
                 "Disney+",
-                false,
+                true,
                 "https://m.media-amazon.com/images/S/pv-target-images/7e72fc7a5206f12315bc56fbfb4798c4e0ceb5e7aa5e0ab163ccda5313b5b71d.jpg"
         ));
 

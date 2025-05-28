@@ -38,6 +38,14 @@ public class MovieController {
             return success ? "Marked as watched" : "Movie not found";
         });
 
+        put("/movie/update/:title", (req, res) -> {
+            String title = req.params(":title");
+            Movie updatedMovie = gson.fromJson(req.body(), Movie.class);
+            boolean success = service.updateMovie(title, updatedMovie);
+            res.status(success ? 200 : 404);
+            return success ? "Movie updated successfully" : "Movie not found or update failed";
+        });
+
         delete("/movie/:title", (req, res) -> {
             String title = req.params(":title");
             boolean success = service.deleteMovie(title);
