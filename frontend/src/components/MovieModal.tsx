@@ -56,7 +56,7 @@ export default function MovieModal({ movie, onClose, onToggleWatched }: Props) {
                         onClick={() => onToggleWatched(movie.title)}
                         className={`px-4 py-2 rounded-md text-sm font-medium transition-colors duration-300 ${
                             movie.watched
-                                ? 'bg-neutral-700 hover:bg-neutral-600 text-white'
+                                ? 'bg-green-600 hover:bg-green-500 text-white'
                                 : 'bg-neutral-800 hover:bg-neutral-700 text-white'
                         }`}
                     >

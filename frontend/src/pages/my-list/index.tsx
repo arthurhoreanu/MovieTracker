@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Funnel, ArrowUpDown, ChevronDown, ChevronUp } from "lucide-react";
 import { Movie } from '@/types/Movie';
+import MovieModal from '@/components/MovieModal';
 
 type FilterKey = 'type' | 'year' | 'platform';
 type SortOption = {
@@ -17,6 +18,7 @@ export default function MyWatchedList() {
     const [showSort, setShowSort] = useState(false);
     const [showAllValues, setShowAllValues] = useState<Record<string, boolean>>({});
 
+    const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
     const router = useRouter();
     const searchParams = useSearchParams();
     const filterRef = useRef<HTMLDivElement>(null);
@@ -354,7 +356,11 @@ export default function MyWatchedList() {
             ) : (
                 <div className="flex flex-wrap gap-6 justify-center">
                     {filteredMovies.map((movie) => (
-                        <div key={movie.title} className="w-40 text-center cursor-pointer">
+                        <div
+                            key={movie.title}
+                            className="w-40 text-center cursor-pointer"
+                            onClick={() => setSelectedMovie(movie)}
+                        >
                             <img
                                 src={movie.imageUrl}
                                 alt={movie.title}
@@ -363,6 +369,35 @@ export default function MyWatchedList() {
                             <p className="mt-2">{movie.title}</p>
                         </div>
                     ))}
+                    {selectedMovie && (
+                        <MovieModal
+                            movie={selectedMovie}
+                            onClose={() => setSelectedMovie(null)}
+                            onToggleWatched={async (title: string) => {
+                                try {
+                                    const res = await fetch(`http://localhost:8080/movie/${encodeURIComponent(title)}`, {
+                                        method: 'PUT',
+                                    });
+
+                                    if (res.ok) {
+                                        // actualizează lista: scoate filmul din MyList dacă nu mai e watched
+                                        setAllMovies((prev) =>
+                                            prev.map((m) =>
+                                                m.title === title ? { ...m, watched: !m.watched } : m
+                                            ).filter((m) => m.watched)
+                                        );
+                                        setSelectedMovie(null); // închide modalul (opțional)
+                                    } else {
+                                        alert('Failed to update movie');
+                                    }
+                                } catch (err) {
+                                    console.error(err);
+                                    alert('Error updating movie');
+                                }
+                            }}
+                        />
+                    )}
+
                 </div>
             )}
         </div>
