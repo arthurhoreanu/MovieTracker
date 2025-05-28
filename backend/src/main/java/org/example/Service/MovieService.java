@@ -16,15 +16,12 @@ public class MovieService {
         if (movie.getTitle() == null || movie.getTitle().trim().isEmpty()) {
             return false;
         }
-
         List<Movie> existing = repository.findAll().stream()
                 .filter(m -> m.getTitle().equalsIgnoreCase(movie.getTitle()))
                 .toList();
-
         if (!existing.isEmpty()) {
             return false;
         }
-
         repository.insert(movie);
         return true;
     }
@@ -33,7 +30,6 @@ public class MovieService {
         if (title == null || title.trim().isEmpty()) {
             return false;
         }
-
         repository.deleteByTitle(title);
         return true;
     }
@@ -42,7 +38,6 @@ public class MovieService {
         if (title == null || title.trim().isEmpty()) {
             return false;
         }
-
         repository.markWatched(title);
         return true;
     }
@@ -68,4 +63,12 @@ public class MovieService {
         if (platform == null || platform.trim().isEmpty()) return List.of();
         return repository.findByPlatform(platform);
     }
+
+    public boolean updateMovie(String title, Movie updatedMovie) {
+        if (title == null || title.trim().isEmpty()) {
+            return false;
+        }
+        return repository.updateMovie(title, updatedMovie);
+    }
+
 }

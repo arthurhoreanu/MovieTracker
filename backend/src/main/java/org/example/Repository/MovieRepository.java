@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MovieRepository {
+
     public void insert(Movie movie) {
         String sql = "INSERT INTO movies (title, year, type, platform, watched, image_url) VALUES (?, ?, ?, ?, ?, ?)";
 
@@ -70,6 +71,27 @@ public class MovieRepository {
 
     public List<Movie> findByPlatform(String platform) {
         return findByParamQuery("SELECT * FROM movies WHERE platform ILIKE ?", "%" + platform + "%");
+    }
+
+    public boolean updateMovie(String title, Movie updatedMovie) {
+        String sql = "UPDATE movies SET year = ?, type = ?, platform = ?, watched = ?, image_url = ? WHERE title = ?";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, updatedMovie.getYear());
+            stmt.setString(2, updatedMovie.getType());
+            stmt.setString(3, updatedMovie.getPlatform());
+            stmt.setBoolean(4, updatedMovie.isWatched());
+            stmt.setString(5, updatedMovie.getImageUrl());
+            stmt.setString(6, title);
+
+            int affectedRows = stmt.executeUpdate();
+            return affectedRows > 0;
+        } catch (SQLException e) {
+            System.err.println("Error updating movie: " + e.getMessage());
+            return false;
+        }
     }
 
     // === Helper methods ===
