@@ -20,7 +20,7 @@ export default function MoviePosterMarquee() {
                         key={movie.title}
                         src={movie.imageUrl}
                         alt={movie.title}
-                        className="w-40 h-60 object-cover mx-6 shadow-md"
+                        className="w-40 h-60 object-cover mx-6 shadow-md rounded-lg"
                     />
                 ))}
             </Marquee>
