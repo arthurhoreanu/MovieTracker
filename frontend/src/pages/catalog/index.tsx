@@ -204,7 +204,11 @@ export default function MovieCatalog() {
                         setShowFilter(!showFilter);
                         if (!showFilter) setShowSort(false);
                     }}
-                    className="transition hover:scale-110 hover:text-white"
+                    className={`hover:scale-110 transition-colors ${
+                        showFilter
+                            ? "text-white"
+                            : "text-gray-400 hover:text-gray-300"
+                    }`}
                 >
                     <Funnel />
                 </button>
@@ -215,7 +219,11 @@ export default function MovieCatalog() {
                         setShowSort(!showSort);
                         if (!showSort) setShowFilter(false);
                     }}
-                    className="transition hover:scale-110 hover:text-white"
+                    className={`hover:scale-110 transition-colors ${
+                        showSort
+                            ? "text-white"
+                            : "text-gray-400 hover:text-gray-300"
+                    }`}
                 >
                     <ArrowUpDown />
                 </button>
