@@ -46,10 +46,19 @@ public class MovieRepository {
 
     public void markWatched(String title) {
         String sql = "UPDATE movies SET watched = TRUE WHERE title = ?";
-
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, title);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Error updating movie: " + e.getMessage());
+        }
+    }
 
+    public void markNotWatched(String title) {
+        String sql = "UPDATE movies SET watched = FALSE WHERE title = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, title);
             stmt.executeUpdate();
         } catch (SQLException e) {
