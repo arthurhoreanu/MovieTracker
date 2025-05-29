@@ -1,8 +1,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import { useRouter } from "next/router";
 import MoviePosterMarquee from "@/components/MoviePosterMarquee";
-import MovieCrudPanel from "@/components/MovieCrudPanel";
 import UpdateMovieForm from "@/components/UpdateMovieForm";
+import AddMovieForm from "@/components/AddMovieForm";
+import DeleteMovieForm from "@/components/DeleteMovieForm";
 import {ChevronDown, ChevronUp} from "lucide-react";
 import {useState} from "react";
 
@@ -17,7 +18,11 @@ const geistMono = Geist_Mono({
 });
 
 export default function Home() {
+
     const [showUpdateForm, setShowUpdateForm] = useState(false);
+    const [showAddForm, setShowAddForm] = useState(false);
+    const [showDeleteForm, setShowDeleteForm] = useState(false);
+
     const router = useRouter();
 
     return (
@@ -41,7 +46,21 @@ export default function Home() {
                     </button>
                 </header>
 
+
                 <div className="w-full max-w-3xl mx-auto">
+                    <div className="flex items-center justify-center gap-2 mb-4">
+                        <h2 className="text-xl font-bold">Add Movie</h2>
+                        <button
+                            onClick={() => setShowAddForm((prev) => !prev)}
+                            className="text-white hover:opacity-80 transition"
+                        >
+                            {showAddForm ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                        </button>
+                    </div>
+                    {showAddForm && <AddMovieForm />}
+                </div>
+
+                <div className="w-full max-w-3xl mx-auto mt-4">
                     <div className="flex items-center justify-center gap-2 mb-4">
                         <h2 className="text-xl font-bold">Update Movie</h2>
                         <button
@@ -54,7 +73,19 @@ export default function Home() {
                     {showUpdateForm && <UpdateMovieForm />}
                 </div>
 
-                <MovieCrudPanel />
+                <div className="w-full max-w-3xl mx-auto mt-4">
+                    <div className="flex items-center justify-center gap-2 mb-4">
+                        <h2 className="text-xl font-bold">Delete Movie</h2>
+                        <button
+                            onClick={() => setShowDeleteForm((prev) => !prev)}
+                            className="text-white hover:opacity-80 transition"
+                        >
+                            {showDeleteForm ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                        </button>
+                    </div>
+                    {showDeleteForm && <DeleteMovieForm />}
+                </div>
+
             </main>
         </>
     );
