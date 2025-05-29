@@ -16,14 +16,13 @@ export default function Navbar() {
     return (
         <nav className="w-full px-6 py-4 bg-neutral-900 text-white shadow">
             <div className="flex justify-between items-center flex-wrap">
-                {/* Logo */}
+
                 <Link href="/">
                     <span className="text-xl font-bold tracking-tight cursor-pointer hover:opacity-80">
                         The Movie Tracker
                     </span>
                 </Link>
 
-                {/* Right: Search + My List */}
                 <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 w-full sm:w-auto mt-3 sm:mt-0">
                     <form onSubmit={handleSearch} className="flex items-center gap-2">
                         <input

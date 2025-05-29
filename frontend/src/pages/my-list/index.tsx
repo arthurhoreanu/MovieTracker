@@ -123,7 +123,6 @@ export default function MyWatchedList() {
                 const valB = Number(b[key]);
                 return order === "asc" ? valA - valB : valB - valA;
             }
-            // For title sorting
             const valA = a[key]?.toString().toLowerCase();
             const valB = b[key]?.toString().toLowerCase();
             if (valA < valB) {
@@ -202,7 +201,7 @@ export default function MyWatchedList() {
                 setAllMovies((prev) =>
                     prev.map((m) =>
                         m.title === title ? { ...m, watched: newWatchedStatus } : m
-                    ).filter((m) => m.watched) // Keep only watched movies
+                    ).filter((m) => m.watched)
                 );
 
                 setSelectedMovie((prev) =>

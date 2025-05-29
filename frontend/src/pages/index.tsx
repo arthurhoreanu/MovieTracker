@@ -1,4 +1,3 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import { useRouter } from "next/router";
 import MoviePosterMarquee from "@/components/MoviePosterMarquee";
 import UpdateMovieForm from "@/components/crud/UpdateMovieForm";
@@ -6,17 +5,6 @@ import AddMovieForm from "@/components/crud/AddMovieForm";
 import DeleteMovieForm from "@/components/crud/DeleteMovieForm";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
-import VideoBackgroundPlayer from "@/components/video/VideoBackgroundPlayer";
-
-const geistSans = Geist({
-    variable: "--font-geist-sans",
-    subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-    variable: "--font-geist-mono",
-    subsets: ["latin"],
-});
 
 export default function Home() {
     const [showUpdateForm, setShowUpdateForm] = useState(false);
@@ -26,13 +14,17 @@ export default function Home() {
     const router = useRouter();
 
     return (
-        <>
-            <VideoBackgroundPlayer
-                url="/background-video.mp4"
-                className="absolute inset-0 w-full h-full object-cover"
-            />
+        <div className="relative min-h-screen overflow-hidden">
 
-            <main className="relative z-10 min-h-screen flex flex-col items-center px-4 py-8 bg-black/60 text-foreground">
+            <div className="absolute inset-0 z-0">
+                <img
+                    src="/background.gif"
+                    alt="Background"
+                    className="w-full h-full object-cover opacity-60 brightness-65"
+                />
+            </div>
+
+            <main className="relative z-10 min-h-screen flex flex-col items-center px-4 py-8 text-foreground">
                 <header className="mb-10 text-center w-full">
                     <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
                         The Movie Tracker
@@ -77,7 +69,6 @@ export default function Home() {
                     {showUpdateForm && <UpdateMovieForm />}
                 </div>
 
-                {/* Delete Movie */}
                 <div className="w-full max-w-3xl mx-auto mt-4">
                     <div className="flex items-center justify-center gap-2 mb-4">
                         <h2 className="text-xl font-bold">Delete Movie</h2>
@@ -91,6 +82,7 @@ export default function Home() {
                     {showDeleteForm && <DeleteMovieForm />}
                 </div>
             </main>
-        </>
+        </div>
     );
+
 }
