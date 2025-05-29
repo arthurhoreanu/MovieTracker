@@ -410,13 +410,13 @@ export default function MyWatchedList() {
                     {filteredMovies.map((movie) => (
                         <div
                             key={movie.title}
-                            className="w-40 text-center cursor-pointer"
+                            className="w-40 text-center cursor-pointer transform transition duration-200 hover:scale-105 hover:shadow-xl"
                             onClick={() => setSelectedMovie(movie)}
                         >
                             <img
                                 src={movie.imageUrl}
                                 alt={movie.title}
-                                className="w-full h-60 object-cover shadow-md"
+                                className="w-full h-60 object-cover rounded-lg shadow-md"
                             />
                             <p className="mt-2">{movie.title}</p>
                         </div>
