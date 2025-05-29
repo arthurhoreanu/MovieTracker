@@ -22,6 +22,7 @@ export default function MovieCatalog() {
 
     const router = useRouter();
     const searchParams = useSearchParams();
+    const searchQuery = searchParams.get('search')?.toLowerCase() || '';
 
     const filterRef = useRef<HTMLDivElement>(null);
     const sortRef = useRef<HTMLDivElement>(null);
@@ -104,8 +105,9 @@ export default function MovieCatalog() {
             const typeMatch = filters.types.length === 0 || filters.types.includes(movie.type);
             const yearMatch = filters.years.length === 0 || filters.years.includes(movie.year.toString());
             const platformMatch = filters.platforms.length === 0 || filters.platforms.includes(movie.platform);
+            const searchMatch = movie.title.toLowerCase().includes(searchQuery);
 
-            return typeMatch && yearMatch && platformMatch;
+            return typeMatch && yearMatch && platformMatch && searchMatch;
         });
     };
 
