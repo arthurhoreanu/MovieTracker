@@ -33,14 +33,13 @@ public class App {
                 "https://m.media-amazon.com/images/S/pv-target-images/7e72fc7a5206f12315bc56fbfb4798c4e0ceb5e7aa5e0ab163ccda5313b5b71d.jpg"
         ));
 
-        // ✅ Filme noi adăugate
         service.addMovie(new Movie(
                 "Inception",
                 2010,
                 "Action",
                 "HBO Max",
                 true,
-                "https://m.media-amazon.com/images/I/51FN6ZfX6SL._AC_.jpg"
+                "https://cdn11.bigcommerce.com/s-yzgoj/images/stencil/1280x1280/products/2919271/5944675/MOVEB46211__19379.1679590452.jpg?c=2"
         ));
 
         service.addMovie(new Movie(
@@ -49,7 +48,7 @@ public class App {
                 "Action",
                 "Netflix",
                 true,
-                "https://m.media-amazon.com/images/I/51CbvZ3x7HL._AC_.jpg"
+                "https://rukminim2.flixcart.com/image/850/1000/k8xduvk0/poster/j/m/z/medium-the-dark-knight-poster-decorative-wall-poster-wall-d-cor-original-imafqu8euacqngyh.jpeg?q=90&crop=false"
         ));
 
         service.addMovie(new Movie(
@@ -67,7 +66,7 @@ public class App {
                 "Drama",
                 "Hulu",
                 true,
-                "https://m.media-amazon.com/images/I/81D+KJkO1PL._AC_SL1500_.jpg"
+                "https://m.media-amazon.com/images/M/MV5BOTgyOGQ1NDItNGU3Ny00MjU3LTg2YWEtNmEyYjBiMjI1Y2M5XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
         ));
 
         service.addMovie(new Movie(
@@ -76,7 +75,7 @@ public class App {
                 "Sci-Fi",
                 "HBO Max",
                 true,
-                "https://m.media-amazon.com/images/I/51vpnbwFHrL._AC_.jpg"
+                "https://m.media-amazon.com/images/S/pv-target-images/f17e616043ddf4ef91b4b7b22424869a164eb4cfdb424fa0446fa3fcb0e7f37e.jpg"
         ));
 
         service.addMovie(new Movie(
@@ -85,7 +84,7 @@ public class App {
                 "Thriller",
                 "Hulu",
                 true,
-                "https://m.media-amazon.com/images/I/91T8R8FTpQL._AC_SL1500_.jpg"
+                "https://m.media-amazon.com/images/S/pv-target-images/4667149e0aef027e1e79096af93b945738ca16ed7bc6df1087db82233155be07.jpg"
         ));
 
         service.addMovie(new Movie(
@@ -94,7 +93,7 @@ public class App {
                 "Musical",
                 "Netflix",
                 true,
-                "https://m.media-amazon.com/images/I/81G+5QJaswL._AC_SY679_.jpg"
+                "https://m.media-amazon.com/images/M/MV5BMzUzNDM2NzM2MV5BMl5BanBnXkFtZTgwNTM3NTg4OTE@._V1_.jpg"
         ));
 
         service.addMovie(new Movie(
@@ -103,7 +102,169 @@ public class App {
                 "Drama",
                 "Amazon Prime",
                 true,
-                "https://m.media-amazon.com/images/I/71UFBXzMlfL._AC_SY679_.jpg"
+                "https://www.tallengestore.com/cdn/shop/products/Whiplash-MilesTeller-HollywoodMovieArtPoster_76ab8186-5a84-408c-8d61-1a139d4700ad.jpg?v=1705900209"
+        ));
+
+        service.addMovie(new Movie(
+                "The Greatest Showman",
+                2017,
+                "Musical",
+                "Netflix",
+                false,
+                "https://m.media-amazon.com/images/I/814u8J7W1gL.jpg"
+        ));
+
+        service.addMovie(new Movie(
+                "The Lord of the Rings: The Fellowship of the Ring",
+                2001,
+                "Fantasy",
+                "HBO Max",
+                false,
+                "https://m.media-amazon.com/images/I/81EBp0vOZZL.jpg"
+        ));
+
+        service.addMovie(new Movie(
+                "How To Train Your Dragon",
+                2008,
+                "Animation",
+                "Amazon Prime",
+                false,
+                "https://m.media-amazon.com/images/M/MV5BMjA5NDQyMjc2NF5BMl5BanBnXkFtZTcwMjg5ODcyMw@@._V1_.jpg"
+        ));
+
+        service.addMovie(new Movie(
+                "Emergency",
+                2022,
+                "Thriller",
+                "Amazon Prime",
+                false,
+                "https://m.media-amazon.com/images/M/MV5BMzMxMmFmYzktYzc3Ni00NGVmLTg4ODAtNmM1NmYyMTA3ODE2XkEyXkFqcGc@._V1_.jpg"
+        ));
+
+        service.addMovie(new Movie(
+                "Conclave",
+                2024,
+                "Drama",
+                "Netflix",
+                false,
+                "https://m.media-amazon.com/images/M/MV5BYjgxMDI5NmMtNTU3OS00ZDQxLTgxZmEtNzY1ZTBmMDY4NDRkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+        ));
+
+        service.addMovie(new Movie(
+                "I'm Still Here",
+                2024,
+                "Drama",
+                "Netflix",
+                false,
+                "https://s3.amazonaws.com/nightjarprod/content/uploads/sites/216/2025/01/13224833/qNLMPY3KLrYgTX2QZ5iEwwOqyRz-683x1024.jpg"
+        ));
+
+        service.addMovie(new Movie(
+                "Mean Girls",
+                2004,
+                "Comedy",
+                "Netflix",
+                false,
+                "https://m.media-amazon.com/images/M/MV5BMjE1MDQ4MjI1OV5BMl5BanBnXkFtZTcwNzcwODAzMw@@._V1_.jpg"
+        ));
+
+        service.addMovie(new Movie(
+                "A Real Pain",
+                2024,
+                "Drama",
+                "HBO Max",
+                false,
+                "https://www.socialworker.com/downloads/2995/download/20250113_184548.jpg?cb=30b2f906af99f80b138731de427bc9d8"
+        ));
+
+        service.addMovie(new Movie(
+                "The Suicide Squad",
+                2021,
+                "Action",
+                "HBO Max",
+                false,
+                "https://m.media-amazon.com/images/M/MV5BMWU3Y2NlZmEtMjJjNS00ZWMxLWE1MzctYWYyMjMzMDdkNTE4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+        ));
+
+        service.addMovie(new Movie(
+                "Wicked",
+                2024,
+                "Musical",
+                "Disney+",
+                false,
+                "https://m.media-amazon.com/images/I/81cmJpAKEVL.jpg"
+        ));
+
+        service.addMovie(new Movie(
+                "The Substance",
+                2024,
+                "Horror",
+                "Amazon Prime",
+                false,
+                "https://image.tmdb.org/t/p/original/wvosSmS5PmMycp8AtvYUuzLMSLh.jpg"
+        ));
+
+        service.addMovie(new Movie(
+                "Amélie",
+                2001,
+                "Comedy",
+                "Netflix",
+                false,
+                "https://image.tmdb.org/t/p/original/oTKduWL2tpIKEmkAqF4mFEAWAsv.jpg"
+        ));
+
+        service.addMovie(new Movie(
+                "Requiem for a Dream",
+                2000,
+                "Drama",
+                "HBO Max",
+                false,
+                "https://m.media-amazon.com/images/M/MV5BN2ZlMjIzZjctYzA2My00ZWYyLWI4ZjctMGI2NWYyNzFiZjAwXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+        ));
+
+        service.addMovie(new Movie(
+                "Spider-Man 2",
+                2004,
+                "Action",
+                "Netflix",
+                false,
+                "https://m.media-amazon.com/images/M/MV5BNGQ0YTQyYTgtNWI2YS00NTE2LWJmNDItNTFlMTUwNmFlZTM0XkEyXkFqcGc@._V1_.jpg"
+        ));
+
+        service.addMovie(new Movie(
+                "Home Alone",
+                1990,
+                "Comedy",
+                "Netflix",
+                false,
+                "https://m.media-amazon.com/images/I/814O+EE3ESL.jpg"
+        ));
+
+        service.addMovie(new Movie(
+                "Before Sunrise",
+                1995,
+                "Drama",
+                "HBO Max",
+                false,
+                "https://m.media-amazon.com/images/M/MV5BZDZhZmI1ZTUtYWI3NC00NTMwLTk3NWMtNDc0OGNjM2I0ZjlmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+        ));
+
+        service.addMovie(new Movie(
+                "Edward Scissorhands",
+                1990,
+                "Fantasy",
+                "Amazon Prime",
+                false,
+                "https://i.ebayimg.com/images/g/8EsAAMXQVT9Sse40/s-l1200.jpg"
+        ));
+
+        service.addMovie(new Movie(
+                "The Talented Mr. Ripley",
+                1999,
+                "Thriller",
+                "HBO Max",
+                false,
+                "https://m.media-amazon.com/images/M/MV5BYzI2ZmU3MWMtZmRlMi00ZmVlLTkwMDMtZmI1YTg4YzcwMDE0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
         ));
 
         options("/*", (request, response) -> {
