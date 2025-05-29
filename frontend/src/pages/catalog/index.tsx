@@ -37,26 +37,51 @@ export default function MovieCatalog() {
     }, [searchQuery]);
 
     const handleToggleWatched = async (title: string) => {
+        const movie = movies.find((m) => m.title === title);
+        if (!movie) return;
+
+        const newWatchedStatus = !movie.watched;
+
         try {
+            console.log(`Updating movie "${title}" to watched: ${newWatchedStatus}`);
+
             const response = await fetch(`http://localhost:8080/movie/${encodeURIComponent(title)}`, {
                 method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({ watched: newWatchedStatus }),
             });
 
+            console.log(`Response status: ${response.status}`);
+
             if (response.ok) {
+                const responseData = await response.text();
+                console.log('Response data:', responseData);
+
+                // Update local state only after successful server update
                 setMovies((prev) =>
                     prev.map((m) =>
-                        m.title === title ? { ...m, watched: !m.watched } : m
+                        m.title === title ? { ...m, watched: newWatchedStatus } : m
                     )
                 );
 
                 setSelectedMovie((prev) =>
                     prev && prev.title === title
-                        ? { ...prev, watched: !prev.watched }
+                        ? { ...prev, watched: newWatchedStatus }
                         : prev
                 );
+
+                console.log(`Successfully updated "${title}" to watched: ${newWatchedStatus}`);
+            } else {
+                const errorText = await response.text();
+                console.error('Server returned error:', response.status, errorText);
+                alert(`Failed to update movie: ${errorText}`);
             }
         } catch (error) {
-            console.error('Failed to update watched status:', error);
+            console.error('Network error while updating watched status:', error);
+            alert('Network error occurred while updating movie');
         }
     };
 
