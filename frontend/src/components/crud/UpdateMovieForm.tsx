@@ -103,7 +103,6 @@ export default function UpdateMovieForm() {
                         </div>
                     ))}
 
-                    {/* Buton centrat, fără colțuri, hover cu contur alb */}
                     <div className="flex justify-center mt-10">
                         <button
                             onClick={handleUpdate}
