@@ -1,5 +1,7 @@
 package org.example.Controller;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.example.Model.Movie;
 import org.example.Service.MovieService;
 import static spark.Spark.*;
@@ -32,10 +34,23 @@ public class MovieController {
         });
 
         put("/movie/:title", (req, res) -> {
-            String title = req.params(":title");
-            boolean success = service.markAsWatched(title);
-            res.status(success ? 200 : 404);
-            return success ? "Marked as watched" : "Movie not found";
+            String encodedTitle = req.params(":title");
+            String title;
+            try {
+                title = java.net.URLDecoder.decode(encodedTitle, "UTF-8");
+            } catch (Exception e) {
+                title = encodedTitle;
+            }
+            JsonObject body = JsonParser.parseString(req.body()).getAsJsonObject();
+            boolean watched = body.get("watched").getAsBoolean();
+            boolean success;
+            if (watched) {
+                success = service.markAsWatched(title);
+            } else {
+                success = service.markAsNotWatched(title);
+            }
+            res.status(success ? 200 : 400);
+            return success ? "Updated" : "Failed";
         });
 
         put("/movie/update/:title", (req, res) -> {

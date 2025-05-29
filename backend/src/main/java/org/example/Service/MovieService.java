@@ -42,6 +42,14 @@ public class MovieService {
         return true;
     }
 
+    public boolean markAsNotWatched(String title) {
+        if (title == null || title.trim().isEmpty()) {
+            return false;
+        }
+        repository.markNotWatched(title);
+        return true;
+    }
+
     public List<Movie> getAllMovies() {
         return repository.findAll();
     }
