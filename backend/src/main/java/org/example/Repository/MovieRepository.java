@@ -13,7 +13,6 @@ public class MovieRepository {
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-
             stmt.setString(1, movie.getTitle());
             stmt.setInt(2, movie.getYear());
             stmt.setString(3, movie.getType());
@@ -36,7 +35,6 @@ public class MovieRepository {
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-
             stmt.setString(1, title);
             stmt.executeUpdate();
         } catch (SQLException e) {
