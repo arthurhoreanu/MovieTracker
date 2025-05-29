@@ -7,7 +7,8 @@ import org.example.Service.MovieService;
 
 public class App {
     public static void main(String[] args) {
-        port(8080);
+
+        port(Integer.parseInt(System.getenv().getOrDefault("PORT", "8080")));
         MovieRepository repo = new MovieRepository();
         MovieService service = new MovieService(repo);
 
