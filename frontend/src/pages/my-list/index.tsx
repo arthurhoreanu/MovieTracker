@@ -175,6 +175,58 @@ export default function MyWatchedList() {
         return values.sort((a, b) => a.localeCompare(b));
     };
 
+    const handleToggleWatched = async (title: string) => {
+        const movie = allMovies.find((m) => m.title === title);
+        if (!movie) return;
+
+        const newWatchedStatus = !movie.watched;
+
+        try {
+            console.log(`Updating movie "${title}" to watched: ${newWatchedStatus}`);
+
+            const response = await fetch(`http://localhost:8080/movie/${encodeURIComponent(title)}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({ watched: newWatchedStatus }),
+            });
+
+            console.log(`Response status: ${response.status}`);
+
+            if (response.ok) {
+                const responseData = await response.text();
+                console.log('Response data:', responseData);
+
+                setAllMovies((prev) =>
+                    prev.map((m) =>
+                        m.title === title ? { ...m, watched: newWatchedStatus } : m
+                    ).filter((m) => m.watched) // Keep only watched movies
+                );
+
+                setSelectedMovie((prev) =>
+                    prev && prev.title === title
+                        ? { ...prev, watched: newWatchedStatus }
+                        : prev
+                );
+
+                if (!newWatchedStatus) {
+                    setSelectedMovie(null);
+                }
+
+                console.log(`Successfully updated "${title}" to watched: ${newWatchedStatus}`);
+            } else {
+                const errorText = await response.text();
+                console.error('Server returned error:', response.status, errorText);
+                alert(`Failed to update movie: ${errorText}`);
+            }
+        } catch (error) {
+            console.error('Network error while updating watched status:', error);
+            alert('Network error occurred while updating movie');
+        }
+    };
+
     return (
         <div className="min-h-screen p-8 bg-background text-foreground">
             <h1 className="text-3xl font-bold mb-6 text-center">
@@ -373,31 +425,9 @@ export default function MyWatchedList() {
                         <MovieModal
                             movie={selectedMovie}
                             onClose={() => setSelectedMovie(null)}
-                            onToggleWatched={async (title: string) => {
-                                try {
-                                    const res = await fetch(`http://localhost:8080/movie/${encodeURIComponent(title)}`, {
-                                        method: 'PUT',
-                                    });
-
-                                    if (res.ok) {
-                                        // actualizează lista: scoate filmul din MyList dacă nu mai e watched
-                                        setAllMovies((prev) =>
-                                            prev.map((m) =>
-                                                m.title === title ? { ...m, watched: !m.watched } : m
-                                            ).filter((m) => m.watched)
-                                        );
-                                        setSelectedMovie(null); // închide modalul (opțional)
-                                    } else {
-                                        alert('Failed to update movie');
-                                    }
-                                } catch (err) {
-                                    console.error(err);
-                                    alert('Error updating movie');
-                                }
-                            }}
+                            onToggleWatched={handleToggleWatched}
                         />
                     )}
-
                 </div>
             )}
         </div>

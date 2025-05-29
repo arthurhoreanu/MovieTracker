@@ -2,6 +2,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { useRouter } from "next/router";
 import MoviePosterMarquee from "@/components/MoviePosterMarquee";
 import MovieCrudPanel from "@/components/MovieCrudPanel";
+import UpdateMovieForm from "@/components/UpdateMovieForm";
+import {ChevronDown, ChevronUp} from "lucide-react";
+import {useState} from "react";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -14,6 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export default function Home() {
+    const [showUpdateForm, setShowUpdateForm] = useState(false);
     const router = useRouter();
 
     return (
@@ -36,6 +40,19 @@ export default function Home() {
                         🎬 See the entire movie catalog
                     </button>
                 </header>
+
+                <div className="w-full max-w-3xl mx-auto">
+                    <div className="flex items-center justify-center gap-2 mb-4">
+                        <h2 className="text-xl font-bold">Update Movie</h2>
+                        <button
+                            onClick={() => setShowUpdateForm((prev) => !prev)}
+                            className="text-white hover:opacity-80 transition"
+                        >
+                            {showUpdateForm ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                        </button>
+                    </div>
+                    {showUpdateForm && <UpdateMovieForm />}
+                </div>
 
                 <MovieCrudPanel />
             </main>

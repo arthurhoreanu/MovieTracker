@@ -23,7 +23,7 @@ export default function MovieCrudPanel() {
 
     const handleAdd = async () => {
         try {
-            const res = await fetch('http://localhost:8080/api/movies', {
+            const res = await fetch('http://localhost:8080/movie', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ ...addMovie, watched: false }),
